@@ -44,33 +44,30 @@ export async function searchBookInformation(query: number){
 
 
 
-export async function searchSimilarBooks(query: number)
-{
-    const url = `${BASE_URL}/api-key=${API_KEY}&${query}/similar`;
+export async function searchSimilarBooks(query: number) {
+  const url = `${BASE_URL}/${query}/similar?api-key=${API_KEY}`;
 
-    const response = await fetch(url);
+  const response = await fetch(url);
 
-    if(!response.ok)
-    {
-        throw Error(`HTTP ERROR STATUS ${response.status}`);
-    }
+  if (!response.ok) {
+    throw new Error(`HTTP ERROR STATUS ${response.status}`);
+  }
 
-    const data: SimilarBooksApi = await response.json();
-    return data;
+  const data: SimilarBooksApi = await response.json();
+  return data;
 }
 
 
-export async function searchAuthors(query: string)
-{
-    const url = `${BASE_URL}/api-key=${API_KEY}&search-authors?name=${query}`;
 
-    const response = await fetch(url);
+export async function searchAuthors(query: string) {
+  const url = `${BASE_URL}/search-authors?name=${encodeURIComponent(query)}&api-key=${API_KEY}`;
 
-    if(!response.ok)
-    {
-        throw Error(`HTTP ERROR STATUS ${response.status}`);
-    }
+  const response = await fetch(url);
 
-    const data: AuthorApi = await response.json();
-    return data;
+  if (!response.ok) {
+    throw new Error(`HTTP ERROR STATUS ${response.status}`);
+  }
+
+  const data: AuthorApi = await response.json();
+  return data;
 }

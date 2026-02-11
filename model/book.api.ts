@@ -6,7 +6,7 @@ export interface SearchBookApi{
 }
 
 export interface SimilarBooksApi{
-    books: BookApi[]
+    similar_books: BookApi[]
 }
 
 export interface AuthorApi{

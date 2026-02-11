@@ -3,6 +3,7 @@ import { Book, SearchBook, SimilarBooks, Author } from '../model/book.user'
 
 export function parseBook(api: BookApi) : Book {
     return {
+    id: api.id,
     title:api.title,
     image: api.image ?? null,
     authors: api.authors ? 
@@ -28,10 +29,14 @@ export function parseSearchBook(api:SearchBookApi): SearchBook{
     }
 }
 
-export function parseSimilarBooks(api:SimilarBooksApi) : SimilarBooks{
-    return {
-        books: api.books.map(parseBook)}
+export function parseSimilarBooks(api: SimilarBooksApi): SimilarBooks {
+  return {
+    books: api.similar_books
+      ? api.similar_books.map(parseBook)
+      : []
+  };
 }
+
 
 export function parseAuthor(api: AuthorApi): Author {
     return {
