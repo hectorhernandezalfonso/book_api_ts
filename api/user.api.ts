@@ -1,4 +1,4 @@
-import { SearchBookApi } from '../model/book.api'
+import { AuthorApi, BookApi, SearchBookApi, SimilarBooksApi } from '../model/book.api'
 import { SearchBook } from '../model/book.user';
 
 import 'dotenv/config'
@@ -23,8 +23,54 @@ export async function searchBooks(query: string){
         throw Error(`HTTP ERROR STATUS ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: SearchBookApi = await response.json();
     return data;
 }
 
 
+export async function searchBookInformation(query: number){
+    const url = `${BASE_URL}/api-key=${API_KEY}&${query}`;
+
+    const response = await fetch(url);
+
+    if(!response.ok)
+    {
+        throw Error(`HTTP ERROR STATUS ${response.status}`);
+    }
+
+    const data: BookApi = await response.json();
+    return data;
+}
+
+
+
+export async function searchSimilarBooks(query: number)
+{
+    const url = `${BASE_URL}/api-key=${API_KEY}&${query}/similar`;
+
+    const response = await fetch(url);
+
+    if(!response.ok)
+    {
+        throw Error(`HTTP ERROR STATUS ${response.status}`);
+    }
+
+    const data: SimilarBooksApi = await response.json();
+    return data;
+}
+
+
+export async function searchAuthors(query: string)
+{
+    const url = `${BASE_URL}/api-key=${API_KEY}&search-authors?name=${query}`;
+
+    const response = await fetch(url);
+
+    if(!response.ok)
+    {
+        throw Error(`HTTP ERROR STATUS ${response.status}`);
+    }
+
+    const data: AuthorApi = await response.json();
+    return data;
+}

@@ -33,7 +33,8 @@ export function parseSimilarBooks(api:SimilarBooksApi) : SimilarBooks{
         books: api.books.map(parseBook)}
 }
 
-export function parseAuthor(api: AuthorApi) : string[]{
-    return api.authors ? api.authors.map(author => author.name) : [];
+export function parseAuthor(api: AuthorApi): Author {
+    return {
+        authors: api.authors ? api.authors.map(author => author.name) : []
+    };
 }
-
