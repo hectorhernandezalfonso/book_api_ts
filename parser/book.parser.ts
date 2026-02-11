@@ -24,7 +24,7 @@ export function parseSearchBook(api:SearchBookApi): SearchBook{
         available: api.available,
         number: api.number,
         offset: api.offset,
-        books: api.books.map(parseBook)
+        books: api.books.map(inner => parseBook(inner[0]))
     }
 }
 

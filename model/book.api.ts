@@ -2,7 +2,7 @@ export interface SearchBookApi{
     available: number,
     number: number,
     offset: number,
-    books: BookApi[]
+    books: BookApi[][]
 }
 
 export interface SimilarBooksApi{
