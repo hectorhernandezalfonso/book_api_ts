@@ -1,1 +1,9 @@
-fetch('https://pokeapi.co/api/v2/pokemon/ditto').then(response => response.json()).then(data => console.log(data))
+import { parsedSearchBooks } from './service/book.service'
+
+
+async function main() {
+  let result = await parsedSearchBooks("romance");
+  console.log(result);
+}
+
+main();
